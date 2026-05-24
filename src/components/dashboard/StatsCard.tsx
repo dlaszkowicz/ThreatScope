@@ -21,7 +21,9 @@ export function StatsCard({ title, value, description, icon: Icon }: StatsCardPr
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-4xl font-semibold leading-none text-foreground">{value}</div>
+        <div className="text-4xl font-semibold leading-none text-foreground sm:text-[2.75rem]">
+          {value}
+        </div>
         <p className="mt-2 text-sm leading-5 text-muted-foreground">{description}</p>
       </CardContent>
     </Card>

@@ -86,6 +86,7 @@ export function Topbar() {
             item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
           return (
             <Link
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring",
                 isActive && "border border-primary/20 bg-accent text-foreground",

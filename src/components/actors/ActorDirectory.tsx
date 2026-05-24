@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { Search, X } from "lucide-react";
+import { Search, SearchX, X } from "lucide-react";
 
 import { ThreatActorCard } from "@/components/dashboard/ThreatActorCard";
 import { Button } from "@/components/ui/button";
@@ -97,13 +97,13 @@ export function ActorDirectory() {
           </div>
 
           <div className="grid gap-4 xl:grid-cols-2">
-            <div>
-              <div className="text-xs font-semibold uppercase text-foreground">Severity</div>
+            <div className="panel-muted p-3">
+              <div className="text-xs font-semibold uppercase text-muted-foreground">Severity</div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {severityFilters.map((item) => (
                   <Button
                     aria-pressed={item === severity}
-                    className={cn(item === severity && "bg-accent text-accent-foreground")}
+                    className={cn(item === severity && "filter-active")}
                     key={item}
                     onClick={() => setSeverity(item)}
                     size="sm"
@@ -117,13 +117,13 @@ export function ActorDirectory() {
                 ))}
               </div>
             </div>
-            <div>
-              <div className="text-xs font-semibold uppercase text-foreground">Actor type</div>
+            <div className="panel-muted p-3">
+              <div className="text-xs font-semibold uppercase text-muted-foreground">Actor type</div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {typeFilters.map((item) => (
                   <Button
                     aria-pressed={item === actorType}
-                    className={cn(item === actorType && "bg-accent text-accent-foreground")}
+                    className={cn(item === actorType && "filter-active")}
                     key={item}
                     onClick={() => setActorType(item)}
                     size="sm"
@@ -155,6 +155,7 @@ export function ActorDirectory() {
       ) : (
         <Card>
           <CardContent className="py-12 text-center">
+            <SearchX className="mx-auto h-10 w-10 text-muted-foreground" aria-hidden="true" />
             <h2 className="text-lg font-semibold text-foreground">No actors found</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Adjust the search query or reset filters to return to the full local dataset.

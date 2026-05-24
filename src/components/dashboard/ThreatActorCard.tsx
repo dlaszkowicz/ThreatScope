@@ -15,7 +15,7 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
   return (
     <Card className="surface-hover h-full">
       <CardHeader>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Badge variant="secondary">{actor.type}</Badge>
           <Badge variant={getSeverityTone(actor.severity)}>{actor.severity}</Badge>
         </div>
@@ -28,12 +28,9 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">{actor.summary}</p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 border-t border-border/70 pt-4">
           {actor.targetSectors.slice(0, 3).map((sector) => (
-            <span
-              className="rounded-md border border-border/80 bg-muted/40 px-2 py-1 text-xs font-medium text-muted-foreground"
-              key={sector}
-            >
+            <span className="chip" key={sector}>
               {sector}
             </span>
           ))}

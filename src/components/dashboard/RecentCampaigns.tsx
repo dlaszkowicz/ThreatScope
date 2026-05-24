@@ -13,7 +13,7 @@ export function RecentCampaigns() {
       <CardContent>
         <ol className="relative space-y-4 border-l border-border pl-5">
           {allCampaigns.slice(0, 4).map((campaign) => (
-            <li className="relative" key={`${campaign.title}-${campaign.date}`}>
+            <li className="relative rounded-md border border-transparent p-2 transition-colors hover:border-border/70 hover:bg-muted/20" key={`${campaign.title}-${campaign.date}`}>
               <span className="absolute -left-[27px] top-1 h-3 w-3 rounded-full border border-background bg-primary" />
               <div className="flex flex-wrap items-center gap-2">
                 <time className="text-xs font-medium text-muted-foreground">{campaign.date}</time>

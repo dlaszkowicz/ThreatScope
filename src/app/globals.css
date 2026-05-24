@@ -54,7 +54,31 @@
     text-wrap: balance;
   }
 
+  .panel {
+    @apply rounded-lg border border-border/85 bg-card/95 text-card-foreground shadow-panel ring-1 ring-white/[0.025];
+  }
+
+  .panel-muted {
+    @apply rounded-lg border border-border/70 bg-background/35;
+  }
+
   .surface-hover {
     @apply transition-[background-color,border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-primary/25 hover:bg-card hover:shadow-panel;
+  }
+
+  .section-kicker {
+    @apply text-xs font-semibold uppercase tracking-normal text-primary;
+  }
+
+  .metadata-tile {
+    @apply rounded-md border border-border/70 bg-background/30 px-3 py-2;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-md border border-border/80 bg-muted/40 px-2 py-1 text-xs font-medium text-muted-foreground;
+  }
+
+  .filter-active {
+    @apply border border-primary/25 bg-accent text-accent-foreground;
   }
 }

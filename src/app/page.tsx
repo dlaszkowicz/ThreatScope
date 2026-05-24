@@ -25,16 +25,11 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-5 sm:space-y-6">
-      <section
-        className="rounded-lg border border-border/85 bg-card/95 p-5 shadow-panel ring-1 ring-white/[0.025]"
-        id="dashboard"
-      >
+      <section className="panel overflow-hidden p-5 sm:p-6" id="dashboard">
         <div className="flex min-w-0 flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-xs font-semibold uppercase text-primary">
-                Threat intelligence overview
-              </p>
+              <p className="section-kicker">Threat intelligence overview</p>
               <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/25 bg-emerald-500/10 px-2 py-1 text-xs font-medium text-emerald-200">
                 <CircleDot className="h-3 w-3 fill-emerald-300 text-emerald-300" aria-hidden="true" />
                 Tracking
@@ -50,21 +45,21 @@ export default function Home() {
           </div>
 
           <div className="grid w-full min-w-0 gap-3 text-sm sm:grid-cols-3 lg:w-[420px] lg:grid-cols-1 xl:w-[460px] xl:grid-cols-3">
-            <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
+            <div className="metadata-tile">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
                 <UserCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                 Analyst
               </div>
               <div className="mt-1 font-medium text-foreground">Monitoring</div>
             </div>
-            <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
+            <div className="metadata-tile">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
                 <RadioTower className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                 Dataset
               </div>
               <div className="mt-1 font-medium text-foreground">Local mock</div>
             </div>
-            <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
+            <div className="metadata-tile">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
                 <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                 Updated
@@ -112,7 +107,7 @@ export default function Home() {
               <CardDescription>Browse mapped techniques by tactic and actor</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild className="w-full" variant="outline">
+              <Button asChild className="w-full justify-between" variant="outline">
                 <Link href="/attack">
                   <Crosshair className="h-4 w-4" aria-hidden="true" />
                   Open ATT&CK explorer
@@ -126,7 +121,7 @@ export default function Home() {
       <section className="space-y-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase text-primary">Priority actors</p>
+            <p className="section-kicker">Priority actors</p>
             <h2 className="mt-1 text-2xl font-semibold text-foreground">Tracked actor preview</h2>
           </div>
           <Button asChild variant="outline">

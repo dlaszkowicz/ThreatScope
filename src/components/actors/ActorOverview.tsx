@@ -30,7 +30,7 @@ export function ActorOverview({ actor }: { actor: ThreatActor }) {
           <CardDescription>Sectors and regions in this local profile</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
-          <div>
+          <div className="panel-muted p-4">
             <div className="mb-3 flex items-center gap-2 text-sm font-medium text-foreground">
               <Target className="h-4 w-4 text-primary" aria-hidden="true" />
               Target sectors
@@ -43,7 +43,7 @@ export function ActorOverview({ actor }: { actor: ThreatActor }) {
               ))}
             </div>
           </div>
-          <div>
+          <div className="panel-muted p-4">
             <div className="mb-3 flex items-center gap-2 text-sm font-medium text-foreground">
               <Globe2 className="h-4 w-4 text-primary" aria-hidden="true" />
               Target regions

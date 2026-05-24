@@ -48,7 +48,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
         </Link>
       </Button>
 
-      <section className="rounded-lg border border-border/85 bg-card/95 p-5 shadow-panel ring-1 ring-white/[0.025]">
+      <section className="panel p-5 sm:p-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline">{report.status}</Badge>
           <Badge variant="secondary">{report.focus}</Badge>

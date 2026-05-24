@@ -1,4 +1,6 @@
 import { ActorDirectory } from "@/components/actors/ActorDirectory";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { dashboardStats } from "@/data/threat-actors";
 
 export const metadata = {
   title: "Threat Actors",
@@ -8,16 +10,16 @@ export const metadata = {
 export default function ActorsPage() {
   return (
     <div className="mx-auto max-w-7xl space-y-6">
-      <section>
-        <p className="text-xs font-semibold uppercase text-primary">Threat actor directory</p>
-        <h1 className="mt-2 text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-          Actors
-        </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Search local mock profiles by actor name, alias, country, sector, severity,
-          technique, malware family, campaign context, or IOC note.
-        </p>
-      </section>
+      <PageHeader
+        description="Search local mock profiles by actor name, alias, country, sector, severity, technique, malware family, campaign context, or IOC note."
+        eyebrow="Threat actor directory"
+        meta={[
+          { label: "Tracked actors", value: dashboardStats.trackedActors },
+          { label: "Critical profiles", value: dashboardStats.criticalThreats },
+          { label: "Known IOCs", value: dashboardStats.knownIocs },
+        ]}
+        title="Actors"
+      />
 
       <ActorDirectory />
     </div>

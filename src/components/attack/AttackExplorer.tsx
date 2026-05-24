@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Crosshair, Search, X } from "lucide-react";
+import { Crosshair, Search, SearchX, X } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -60,13 +60,13 @@ export function AttackExplorer() {
             )}
           </div>
 
-          <div>
-            <div className="text-xs font-semibold uppercase text-foreground">Tactic</div>
+          <div className="panel-muted p-3">
+            <div className="text-xs font-semibold uppercase text-muted-foreground">Tactic</div>
             <div className="mt-2 flex flex-wrap gap-2">
               {tacticFilters.map((item) => (
                 <Button
                   aria-pressed={item === tactic}
-                  className={cn(item === tactic && "bg-accent text-accent-foreground")}
+                  className={cn(item === tactic && "filter-active")}
                   key={item}
                   onClick={() => setTactic(item)}
                   size="sm"
@@ -119,6 +119,7 @@ export function AttackExplorer() {
       ) : (
         <Card>
           <CardContent className="py-12 text-center">
+            <SearchX className="mx-auto h-10 w-10 text-muted-foreground" aria-hidden="true" />
             <h2 className="text-lg font-semibold text-foreground">No techniques found</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Try a different tactic or search phrase.
