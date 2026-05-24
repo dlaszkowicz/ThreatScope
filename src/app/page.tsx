@@ -1,7 +1,18 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { Activity, Database, Search, ShieldAlert, Siren, X } from "lucide-react";
+import {
+  Activity,
+  CircleDot,
+  Clock3,
+  Database,
+  RadioTower,
+  Search,
+  ShieldAlert,
+  Siren,
+  UserCheck,
+  X,
+} from "lucide-react";
 
 import { MitreSnapshot } from "@/components/dashboard/MitreSnapshot";
 import { RecentCampaigns } from "@/components/dashboard/RecentCampaigns";
@@ -101,9 +112,17 @@ export default function Home() {
         className="scroll-mt-24 rounded-lg border border-border/85 bg-card/95 p-5 shadow-panel ring-1 ring-white/[0.025]"
         id="dashboard"
       >
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase text-primary">Threat intelligence overview</p>
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-xs font-semibold uppercase text-primary">
+                Threat intelligence overview
+              </p>
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/25 bg-emerald-500/10 px-2 py-1 text-xs font-medium text-emerald-200">
+                <CircleDot className="h-3 w-3 fill-emerald-300 text-emerald-300" aria-hidden="true" />
+                Tracking
+              </span>
+            </div>
             <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-normal text-foreground sm:text-5xl">
               Dashboard
             </h1>
@@ -111,38 +130,68 @@ export default function Home() {
               Frontend-only SOC dashboard using safe local mock intelligence for actor tracking,
               campaign context, MITRE mappings, malware notes, IOCs, and detection guidance.
             </p>
+            <div className="mt-5 grid gap-3 text-sm sm:grid-cols-3">
+              <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+                  <UserCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                  Analyst status
+                </div>
+                <div className="mt-1 font-medium text-foreground">Monitoring</div>
+              </div>
+              <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+                  <RadioTower className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                  Dataset mode
+                </div>
+                <div className="mt-1 font-medium text-foreground">Local mock intel</div>
+              </div>
+              <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+                  <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                  Last updated
+                </div>
+                <div className="mt-1 font-medium text-foreground">May 24, 2026</div>
+              </div>
+            </div>
           </div>
-          <div className="relative w-full lg:max-w-md">
-            <Button
-              aria-label="Focus dashboard search"
-              className="absolute left-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
-              onClick={() => heroSearchRef.current?.focus()}
-              size="icon"
-              variant="ghost"
-            >
-              <Search className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <Input
-              className="pr-10 pl-10"
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search name, alias, country, type, sector, severity"
-              ref={heroSearchRef}
-              value={query}
-            />
-            {query ? (
+          <div className="w-full space-y-3 lg:max-w-md">
+            <div className="relative">
               <Button
-                aria-label="Clear dashboard search"
-                className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
-                onClick={() => {
-                  setQuery("");
-                  heroSearchRef.current?.focus();
-                }}
+                aria-label="Focus dashboard search"
+                className="absolute left-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+                onClick={() => heroSearchRef.current?.focus()}
                 size="icon"
                 variant="ghost"
               >
-                <X className="h-4 w-4" aria-hidden="true" />
+                <Search className="h-4 w-4" aria-hidden="true" />
               </Button>
-            ) : null}
+              <Input
+                className="pr-10 pl-10"
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search name, alias, country, type, sector, severity"
+                ref={heroSearchRef}
+                value={query}
+              />
+              {query ? (
+                <Button
+                  aria-label="Clear dashboard search"
+                  className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+                  onClick={() => {
+                    setQuery("");
+                    heroSearchRef.current?.focus();
+                  }}
+                  size="icon"
+                  variant="ghost"
+                >
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              ) : null}
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-medium text-muted-foreground">
+              <span className="rounded-md border border-border/70 bg-background/30 px-2 py-1">APT tracking</span>
+              <span className="rounded-md border border-border/70 bg-background/30 px-2 py-1">Ransomware</span>
+              <span className="rounded-md border border-border/70 bg-background/30 px-2 py-1">SOC notes</span>
+            </div>
           </div>
         </div>
       </section>
