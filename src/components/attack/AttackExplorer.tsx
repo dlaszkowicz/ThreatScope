@@ -86,7 +86,7 @@ export function AttackExplorer() {
       </Card>
 
       {filteredTechniques.length > 0 ? (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filteredTechniques.map((technique) => (
             <article
               className="rounded-lg border border-border/80 bg-card/95 p-4 shadow-panel ring-1 ring-white/[0.02] transition-colors hover:border-primary/25 hover:bg-card"
@@ -102,8 +102,8 @@ export function AttackExplorer() {
               <p className="mt-2 line-clamp-3 text-sm leading-6 text-muted-foreground">
                 {technique.description}
               </p>
-              <div className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-3">
-                <span className="truncate text-xs font-medium text-muted-foreground">
+              <div className="mt-4 flex min-w-0 flex-col gap-3 border-t border-border pt-3 sm:flex-row sm:items-center sm:justify-between">
+                <span className="min-w-0 truncate text-xs font-medium text-muted-foreground">
                   Related actor: <span className="text-foreground">{technique.actor}</span>
                 </span>
                 <Button asChild size="sm" variant="outline">

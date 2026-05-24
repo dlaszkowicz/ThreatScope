@@ -24,12 +24,12 @@ export default function Home() {
   const featuredActors = threatActors.slice(0, 3);
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="mx-auto max-w-7xl space-y-5 sm:space-y-6">
       <section
         className="rounded-lg border border-border/85 bg-card/95 p-5 shadow-panel ring-1 ring-white/[0.025]"
         id="dashboard"
       >
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex min-w-0 flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center gap-2">
               <p className="text-xs font-semibold uppercase text-primary">
@@ -49,7 +49,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-3 text-sm sm:grid-cols-3 lg:w-[460px] lg:grid-cols-1 xl:grid-cols-3">
+          <div className="grid w-full min-w-0 gap-3 text-sm sm:grid-cols-3 lg:w-[420px] lg:grid-cols-1 xl:w-[460px] xl:grid-cols-3">
             <div className="rounded-md border border-border/70 bg-background/30 px-3 py-2">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
                 <UserCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
@@ -102,7 +102,7 @@ export default function Home() {
         />
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+      <section className="grid min-w-0 gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(320px,360px)]">
         <RecentCampaigns />
         <div className="space-y-5">
           <ThreatLevelChart />
@@ -136,7 +136,7 @@ export default function Home() {
             </Link>
           </Button>
         </div>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {featuredActors.map((actor) => (
             <ThreatActorCard actor={actor} key={actor.slug} />
           ))}

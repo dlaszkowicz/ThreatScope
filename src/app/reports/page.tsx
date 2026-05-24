@@ -23,7 +23,7 @@ export default function ReportsPage() {
         </p>
       </section>
 
-      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {reportPreviews.map((report) => (
           <Card className="h-full hover:border-primary/25 hover:bg-card" key={report.title}>
             <CardHeader>

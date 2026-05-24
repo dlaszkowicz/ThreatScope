@@ -26,9 +26,9 @@ export function ThreatLevelChart() {
         <CardDescription>Current local dataset by actor category</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="relative flex h-60 min-w-0 items-center justify-center overflow-hidden rounded-lg border border-border/70 bg-background/35">
+        <div className="relative flex h-56 min-w-0 items-center justify-center overflow-hidden rounded-lg border border-border/70 bg-background/35 sm:h-60">
           {isClient ? (
-            <PieChart height={230} width={292}>
+            <PieChart height={220} width={260}>
               <Tooltip
                 cursor={false}
                 contentStyle={{
@@ -42,12 +42,12 @@ export function ThreatLevelChart() {
                 formatter={(value, name) => [`${value} actors`, name]}
               />
               <Pie
-                cx={146}
-                cy={112}
+                cx={130}
+                cy={106}
                 data={actorTypeDistribution}
                 dataKey="value"
-                innerRadius={62}
-                outerRadius={86}
+                innerRadius={58}
+                outerRadius={80}
                 paddingAngle={5}
                 stroke="hsl(var(--card))"
                 strokeWidth={4}

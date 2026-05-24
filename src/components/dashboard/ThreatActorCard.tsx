@@ -19,7 +19,7 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
           <Badge variant="secondary">{actor.type}</Badge>
           <Badge variant={getSeverityTone(actor.severity)}>{actor.severity}</Badge>
         </div>
-        <div className="pt-2">
+        <div className="min-w-0 pt-2">
           <CardTitle className="text-xl leading-tight">{actor.name}</CardTitle>
           <p className="mt-1 text-sm font-medium text-muted-foreground">
             {actor.attributedCountry}

@@ -10,10 +10,10 @@ export function MitreTechniqueList({ techniques }: { techniques: MitreTechnique[
         <CardDescription>Mapped behavior for defensive monitoring</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid min-w-0 gap-3 md:grid-cols-2">
           {techniques.map((technique) => (
             <article
-              className="rounded-lg border border-border/80 bg-muted/30 p-4"
+              className="min-w-0 rounded-lg border border-border/80 bg-muted/30 p-4"
               key={technique.id}
             >
               <div className="flex flex-wrap gap-2">

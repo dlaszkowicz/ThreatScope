@@ -30,15 +30,15 @@ export function Topbar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
-      <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6">
-        <div>
-          <div className="text-sm font-semibold text-foreground lg:hidden">ThreatScope</div>
-          <div className="text-xs text-muted-foreground">SOC analyst dashboard</div>
+      <div className="flex flex-col gap-3 px-4 py-3 sm:min-h-16 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-0">
+        <div className="min-w-0 shrink-0">
+          <div className="truncate text-sm font-semibold text-foreground xl:hidden">ThreatScope</div>
+          <div className="truncate text-xs text-muted-foreground">SOC analyst dashboard</div>
         </div>
 
-        <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2 sm:gap-3">
           <form
-            className="relative w-full max-w-md"
+            className="relative min-w-0 w-full sm:max-w-md"
             onSubmit={(event) => {
               event.preventDefault();
               showDashboardResults();

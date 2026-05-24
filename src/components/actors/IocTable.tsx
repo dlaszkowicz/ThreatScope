@@ -44,7 +44,7 @@ export function IocTable({ iocs }: { iocs: IndicatorOfCompromise[] }) {
         <CardTitle>IOC Table</CardTitle>
         <CardDescription>Safe, defanged, or documentation-range indicators</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="min-w-0">
         <Table>
           <TableHeader>
             <TableRow>
