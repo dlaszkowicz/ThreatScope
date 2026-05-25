@@ -2,13 +2,13 @@
 
 import { useMemo, useRef, useState } from "react";
 import { Search, SearchX, X } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 import { ThreatActorCard } from "@/components/dashboard/ThreatActorCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { threatActors } from "@/data/threat-actors";
-import { useDashboardSearch } from "@/lib/search-context";
 import {
   buildFilterOptions,
   countActorsByFilter,
@@ -22,9 +22,16 @@ const severityFilters = buildFilterOptions(threatActors.map((actor) => actor.sev
 const typeFilters = buildFilterOptions(threatActors.map((actor) => actor.type));
 
 export function ActorDirectory() {
+  const searchParams = useSearchParams();
+  const urlQuery = searchParams.get("q") ?? "";
+
+  return <ActorDirectoryContent initialQuery={urlQuery} key={urlQuery} />;
+}
+
+function ActorDirectoryContent({ initialQuery }: { initialQuery: string }) {
   const [severity, setSeverity] = useState<FilterOption<Severity>>("All");
   const [actorType, setActorType] = useState<FilterOption<ThreatActorType>>("All");
-  const { query, setQuery } = useDashboardSearch();
+  const [query, setQuery] = useState(initialQuery);
   const searchRef = useRef<HTMLInputElement>(null);
 
   const filteredActors = useMemo(
@@ -57,7 +64,7 @@ export function ActorDirectory() {
             <div className="relative w-full lg:max-w-md">
               <Button
                 aria-label="Focus actor search"
-                className="absolute left-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+                className="absolute left-0 top-0 text-muted-foreground hover:text-foreground"
                 onClick={() => searchRef.current?.focus()}
                 size="icon"
                 variant="ghost"
@@ -65,16 +72,20 @@ export function ActorDirectory() {
                 <Search className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Input
+                aria-label="Search actor directory"
+                autoComplete="off"
                 className="pr-10 pl-10"
+                name="actor-directory-search"
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search actors, aliases, IOCs, sectors"
+                placeholder="Search actors, aliases, IOCs, sectors…"
                 ref={searchRef}
+                spellCheck={false}
                 value={query}
               />
               {query ? (
                 <Button
                   aria-label="Clear actor search"
-                  className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+                  className="absolute right-0 top-0 text-muted-foreground hover:text-foreground"
                   onClick={() => {
                     setQuery("");
                     searchRef.current?.focus();

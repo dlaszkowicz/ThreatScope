@@ -34,11 +34,15 @@ export function AttackExplorer() {
         <CardContent className="space-y-4 p-4 sm:p-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="relative w-full lg:max-w-md">
-              <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" aria-hidden="true" />
               <Input
+                aria-label="Search ATT&CK techniques"
+                autoComplete="off"
                 className="pr-10 pl-10"
+                name="attack-technique-search"
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search technique ID, tactic, actor"
+                placeholder="Search technique ID, tactic, actor…"
+                spellCheck={false}
                 value={query}
               />
               {query ? (

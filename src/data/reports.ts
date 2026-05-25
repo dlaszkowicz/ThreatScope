@@ -15,8 +15,8 @@ export const reportPreviews: ReportPreview[] = [
   {
     slug: "quarterly-actor-watchlist",
     title: "Quarterly Actor Watchlist",
-    status: "Planned",
-    description: "Portfolio placeholder for a curated actor risk summary.",
+    status: "Ready",
+    description: "A compact actor risk summary assembled from local profile signals.",
     date: "2026-05-24",
     focus: "Actor prioritization",
     sections: [
@@ -37,8 +37,8 @@ export const reportPreviews: ReportPreview[] = [
   {
     slug: "ransomware-exposure-brief",
     title: "Ransomware Exposure Brief",
-    status: "Draft concept",
-    description: "Future local-only report view for defensive executive context.",
+    status: "Draft",
+    description: "Defensive executive context for identity abuse, staging signals, and impact risk.",
     date: "2026-05-24",
     focus: "Ransomware risk context",
     sections: [
@@ -60,7 +60,7 @@ export const reportPreviews: ReportPreview[] = [
     slug: "attack-coverage-notes",
     title: "ATT&CK Coverage Notes",
     status: "Planned",
-    description: "A lightweight report module for mapped technique coverage.",
+    description: "Mapped technique coverage notes for prioritizing monitoring gaps.",
     date: "2026-05-24",
     focus: "Technique coverage",
     sections: [

@@ -1,12 +1,18 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { Cell, Pie, PieChart, Tooltip } from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { actorTypeDistribution } from "@/data/threat-actors";
 
-const colors = ["#2dd4bf", "#fb7185", "#38bdf8", "#a78bfa", "#f59e0b"];
+const colors = [
+  "hsl(var(--chart-1))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+];
 const subscribe = () => () => undefined;
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
@@ -20,43 +26,67 @@ export function ThreatLevelChart() {
   const isClient = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Actor Types</CardTitle>
-        <CardDescription>Current local dataset by actor category</CardDescription>
+    <Card className="overflow-hidden">
+      <CardHeader className="border-b border-border/60 pb-4">
+        <p className="section-kicker">Dataset profile</p>
+        <CardTitle className="text-xl">Actor Types</CardTitle>
+        <CardDescription>Distribution of tracked profiles by category</CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="relative flex h-56 min-w-0 items-center justify-center overflow-hidden rounded-lg border border-border/70 bg-background/35 sm:h-60">
+      <CardContent className="pt-5">
+        <div className="mb-4 grid grid-cols-3 gap-2">
+          <div className="metadata-tile">
+            <div className="text-[10px] font-semibold uppercase text-muted-foreground">Actors</div>
+            <div className="mt-1 font-mono text-lg font-semibold text-foreground">{totalActors}</div>
+          </div>
+          <div className="metadata-tile">
+            <div className="text-[10px] font-semibold uppercase text-muted-foreground">Categories</div>
+            <div className="mt-1 font-mono text-lg font-semibold text-foreground">
+              {actorTypeDistribution.length}
+            </div>
+          </div>
+          <div className="metadata-tile">
+            <div className="text-[10px] font-semibold uppercase text-muted-foreground">Dominant</div>
+            <div className="mt-1 truncate text-sm font-semibold text-foreground">
+              {primaryType?.name ?? "None"}
+            </div>
+          </div>
+        </div>
+        <div
+          className="relative flex h-56 min-w-0 items-center justify-center overflow-hidden rounded-lg border border-border/70 bg-background/35 sm:h-60"
+          aria-hidden="true"
+        >
           {isClient ? (
-            <PieChart height={220} width={260}>
-              <Tooltip
-                cursor={false}
-                contentStyle={{
-                  background: "hsl(var(--popover))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "8px",
-                  color: "hsl(var(--popover-foreground))",
-                  boxShadow: "0 10px 28px rgba(0, 0, 0, 0.22)",
-                  fontSize: "12px",
-                }}
-                formatter={(value, name) => [`${value} actors`, name]}
-              />
-              <Pie
-                cx={130}
-                cy={106}
-                data={actorTypeDistribution}
-                dataKey="value"
-                innerRadius={58}
-                outerRadius={80}
-                paddingAngle={5}
-                stroke="hsl(var(--card))"
-                strokeWidth={4}
-              >
-                {actorTypeDistribution.map((entry, index) => (
-                  <Cell fill={colors[index % colors.length]} key={entry.name} />
-                ))}
-              </Pie>
-            </PieChart>
+            <ResponsiveContainer height="100%" width="100%">
+              <PieChart margin={{ bottom: 8, left: 8, right: 8, top: 8 }}>
+                <Tooltip
+                  cursor={false}
+                  contentStyle={{
+                    background: "hsl(var(--popover))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "8px",
+                    boxShadow: "0 10px 28px rgba(0, 0, 0, 0.22)",
+                    color: "hsl(var(--popover-foreground))",
+                    fontSize: "12px",
+                  }}
+                  formatter={(value, name) => [`${value} actors`, name]}
+                />
+                <Pie
+                  cx="50%"
+                  cy="48%"
+                  data={actorTypeDistribution}
+                  dataKey="value"
+                  innerRadius={58}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  stroke="hsl(var(--card))"
+                  strokeWidth={4}
+                >
+                  {actorTypeDistribution.map((entry, index) => (
+                    <Cell fill={colors[index % colors.length]} key={entry.name} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
           ) : (
             <div className="flex h-full w-full items-center justify-center">
               <div className="relative h-36 w-36 animate-pulse rounded-full border-[22px] border-muted/80">
@@ -74,10 +104,10 @@ export function ThreatLevelChart() {
             </div>
           </div>
         </div>
-        <div className="mt-4 space-y-2">
+        <div className="mt-4 space-y-2" aria-label="Actor type distribution">
           {actorTypeDistribution.map((item, index) => (
             <div
-              className="flex items-center justify-between gap-3 rounded-md border border-border/60 bg-muted/20 px-3 py-2"
+              className="flex items-center justify-between gap-3 rounded-md border border-border/60 bg-muted/20 px-3 py-2.5"
               key={item.name}
             >
               <div className="flex min-w-0 items-center gap-2">
@@ -88,7 +118,7 @@ export function ThreatLevelChart() {
                 <span className="truncate text-sm font-medium text-foreground">{item.name}</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <span>{item.value}</span>
+                <span className="font-mono text-foreground">{item.value}</span>
                 <span className="rounded bg-background/60 px-1.5 py-0.5">
                   {totalActors > 0 ? Math.round((item.value / totalActors) * 100) : 0}%
                 </span>
