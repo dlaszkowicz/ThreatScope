@@ -1,8 +1,11 @@
 # ThreatScope
 
-ThreatScope is a frontend-only cybersecurity threat intelligence dashboard built as a portfolio project. It presents a clean SOC-style interface for exploring threat actors, MITRE ATT&CK techniques, malware families, indicators of compromise, campaign timelines, and analyst detection notes.
+ThreatScope is a frontend-only cybersecurity portfolio project that presents a SOC-style interface for exploring mock threat actors, MITRE ATT&CK techniques, malware families, indicators of compromise, campaign timelines, and analyst notes.
 
 The project uses safe local mock data only. It does not use real threat feeds, scraping, offensive tooling, exploit instructions, or production threat intelligence claims.
+
+- Live demo: https://threatscope.xyz/
+- GitHub repository: https://github.com/dannyseclabs/ThreatScope
 
 ## Problem
 
@@ -29,11 +32,10 @@ The goal is not to provide real intelligence. The goal is to show frontend engin
 - shadcn/ui-style local components
 - lucide-react
 - Recharts
-- Framer Motion
 
 ## Screenshots
 
-These screenshot references are stored in `public/screenshots` so they render in GitHub and can be replaced with captured production screenshots after deployment.
+Screenshot references are stored in `public/screenshots` so they render in GitHub.
 
 | Dashboard | Actor Directory |
 | --- | --- |
@@ -80,9 +82,14 @@ npm run build
 npm audit --omit=dev
 ```
 
-## Deploy To Vercel
+## Deployment
 
-ThreatScope is ready for Vercel as a frontend-only Next.js app.
+ThreatScope is deployed on Vercel as a frontend-only Next.js app:
+
+- Production: https://threatscope.xyz/
+- Repository: https://github.com/dannyseclabs/ThreatScope
+
+To deploy your own copy:
 
 1. Import the GitHub repository into Vercel.
 2. Keep the framework preset as `Next.js`.
@@ -92,17 +99,9 @@ ThreatScope is ready for Vercel as a frontend-only Next.js app.
    - dev: `npm run dev`
 4. No environment variables are required.
 5. Deploy from the `main` branch.
-6. After deployment, verify `/`, `/actors`, `/attack`, `/reports`, and one dynamic actor/report route.
+6. Verify `/`, `/actors`, `/attack`, `/reports`, and one dynamic actor/report route.
 
 The app does not require a backend, database, authentication provider, external API keys, or scheduled jobs.
-
-## Suggested Domain Structure
-
-- Production: `threatscope.yourdomain.com`
-- Vercel preview: Vercel-generated preview URL for pull requests or commits
-- GitHub repository: linked from the portfolio project page
-
-For a personal portfolio, a subdomain keeps the app clearly scoped as a standalone case study while leaving the root domain for the main portfolio.
 
 ## Project Structure
 
@@ -159,13 +158,11 @@ threatscope/
 
 ## Future Roadmap
 
-V2 ideas after the deployed MVP is stable:
+V1 is deployed as a static-first frontend MVP. Possible V2 work:
 
-- Add deployed demo link
 - Expand local report previews
 - Add additional chart views from local data
 - Improve visual QA across more viewport sizes
-- Add optional local-only saved filter state
 - Add printable report layouts from local data
 - Add saved filter presets in local storage
 - Consider backend or external integrations only after the frontend MVP is stable
